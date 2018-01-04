@@ -30,8 +30,9 @@ exports.dateFormat = function(date,skew){ //Skew compared to time in Denmark
     if(skew!=0){
         date.setTime(date.getTime()-3.6e6*skew);
     }
-
-    return date.getUTCFullYear() +""+ this.pad(date.getUTCMonth() + 1) +""+ this.pad(date.getUTCDate()) + "T" + this.pad(date.getUTCHours()) +""+ this.pad(date.getUTCMinutes()) +""+ this.pad(date.getUTCSeconds()) + "Z";
+    
+    return date.toISOString().replace(/([-:]|.000)/g, '');
+    //return date.getUTCFullYear() +""+ this.pad(date.getUTCMonth() + 1) +""+ this.pad(date.getUTCDate()) + "T" + this.pad(date.getUTCHours()) +""+ this.pad(date.getUTCMinutes()) +""+ this.pad(date.getUTCSeconds()) + "Z";
 };
 
 exports.removePadding = function(str){
